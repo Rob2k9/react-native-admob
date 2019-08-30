@@ -93,7 +93,10 @@ public class RNAdMobInterstitialAdModule extends ReactContextBaseJavaModule {
                     @Override
                     public void onAdLoaded() {
                         sendEvent(EVENT_AD_LOADED, null);
-                        mRequestAdPromise.resolve(null);
+                        if (mRequestAdPromise != null) {
+                            mRequestAdPromise.resolve(null);
+                            mRequestAdPromise = null;
+                          }
                     }
                     @Override
                     public void onAdOpened() {
